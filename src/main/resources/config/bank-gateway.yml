@@ -1,0 +1,22 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: "http://localhost:8097/eureka"
+      
+spring:      
+ cloud:
+  discovery:
+   enabled:
+    true
+   
+  gateway:
+   routes:
+     - id: accountModule
+       uri: http://localhost:8081/
+       predicates:
+       - Path=/account/**
+       
+     - id: transactionModule
+       uri: http://localhost:8082/
+       predicates:
+       - Path=/transaction/**      
